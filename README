@@ -1,0 +1,9 @@
+This is a small JQuery Mobile project which reads the open XML webservice from Colombo Stock Exchange
+
+To come out of Cross Domain issue I've used a PHP proxy I found online.
+
+You can check out the live site at http://cse.mayuonline.com/CSE.html 
+
+As you can see currently site is very heavy and not very much suitable for Mobiles. I'll have to work on optimizing it.
+
+Reading XML made easy by JQuery's XPATH. 
