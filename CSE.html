@@ -1,0 +1,83 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>CSE - Colombo Stock Exchange</title> 
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<script type="text/javascript" src="getStock.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script> 
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script> 
+	<script type="text/javascript">
+		$(document).ready(function(){
+		  callCSEWebService();
+		});
+	</script>
+</head> 
+<body> 
+
+<div data-role="page" id="pgIndex">
+
+	<div data-role="header">
+		<h1>CSE - Stock Exchange Mobile</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<ul data-role="listview" data-inset="true"  id="stockList" data-filter="true" >
+			
+		</ul>		
+	</div><!-- /content -->
+<script type="text/javascript">
+	 $("#pgIndex").live('pageinit', function() {
+	 	//alert("callwebservice");
+  		//callCSEWebService();
+	});
+</script>
+	<div data-role="footer">
+		<small>Available as Open Source</small>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+
+<div data-role="page" id="pgstockDetails">
+	<div data-role="header">
+		<a href="CSE.html" data-icon="back">Back</a>
+		<h1>Stock Details</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<ul data-role="listview" data-inset="true"  id="stockDetails">
+			
+		</ul>		
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<small>Available as Open Source</small>
+	</div><!-- /footer -->
+	
+	<script type="text/javascript">
+	//ideally this should be placed in a seperate JS file
+	$("#pgstockDetails").live('pageshow', function() {
+		index = stockIndex;
+		
+	 	console.log("yes I'm called pgstockdetails");
+	 	console.log(index);
+  		$.mobile.showPageLoadingMsg();
+		var listStockDetail = "";	
+		listStockDetail = "<LI> Share Name : "+stockArray[index].shareName+"</LI>"
+						+	"<LI> Traded Volume : "+stockArray[index].shareVolume+"</LI>"
+						+	"<LI> Previous Closing Price : "+stockArray[index].previousClosingPrice+"</LI>"
+						+	"<LI> Opening Price : "+stockArray[index].openingPrice+"</LI>"
+						+	"<LI> High Price : "+stockArray[index].highPrice+"</LI>"
+						+	"<LI> Low Price : "+stockArray[index].lowPrice+"</LI>"
+						+	"<LI> Last Traded Price : "+stockArray[index].lastTradedPrice+"</LI>"
+						+	"<LI> Change (LKR) : "+stockArray[index].changeRupees+"</LI>";
+		$("#stockDetails").html(listStockDetail);
+		$("#stockDetails").listview("refresh");
+		$.mobile.hidePageLoadingMsg(); 
+		}); 
+	</script>
+</div>
+</body>
+</html>
